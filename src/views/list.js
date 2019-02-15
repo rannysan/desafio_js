@@ -38,7 +38,7 @@ const markup = `<li class="optLista" id="${obj.id}">
                           <img class="icon" src="${delIcon}" title="Deletar" alt="imagem do contato">
                         </div>
                         <div class="favIcon">
-                            <img class="icon fav1" src="${img}" alt="estrela de favorito">
+                           <img class="icon fav1" src="${img}" alt="estrela de favorito">
                         </div>
                     </section>
                     </li>`;

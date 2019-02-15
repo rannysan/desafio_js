@@ -10,4 +10,8 @@ export class Api {
     removeId(id){
       return fetch('http://contacts-api.azurewebsites.net/api/contacts/'+id)
     }
+
+    change(id){
+      return fetch('http://contacts-api.azurewebsites.net/api/contacts/' + id)
+    }
 }

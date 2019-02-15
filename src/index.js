@@ -13,6 +13,13 @@ renderList().then(() => {
       return false;
     });
   });
+  var starFav = document.getElementsByClassName('fav1');
+  Array.from(starFav).forEach(function(element) {
+    element.addEventListener('click', () => {
+      let img = require('./images/starColor.png');
+      console.log(element.src);
+    });
+  });
 });
 
 const homeBtn = document.getElementById('home');
@@ -48,3 +55,5 @@ favBtn.addEventListener('click', () => {
     });
   });
 });
+
+//ativar favoritos
