@@ -14,6 +14,7 @@ const renderList = () => {
       ul_ref.innerHTML = '';
       let img;
       data.map(obj => {
+
         if (obj.isFavorite) img = require(`../images/starColor.png`);
         else img = require(`../images/starBlack.png`);
 

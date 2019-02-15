@@ -4,7 +4,6 @@ import renderList from './views/list';
 import renderContact_info from './views/contact_info';
 import renderFavList from './views/fav_list';
 
-
 renderList().then(() => {
   var icon = document.getElementsByClassName('vi');
   Array.from(icon).forEach(function(element) {
@@ -30,15 +29,11 @@ homeBtn.addEventListener('click', () => {
   });
 });
 
-function close() {
-  var close = document.getElementById('close');
-
-  close.addEventListener('click', () => {
-    const aa = document.getElementById('root');
-    aa.style.display = 'none';
-  });
-}
-close();
+var close = document.getElementById('close');
+close.addEventListener('click', () => {
+  const aa = document.getElementById('root');
+  aa.style.display = 'none';
+});
 
 const favBtn = document.getElementById('favorite');
 favBtn.addEventListener('click', () => {
