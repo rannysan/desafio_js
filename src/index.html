@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lista de contatos</title>
+  </head>
+
+  <body>
+    <header>
+      <nav id="menu">
+        <h1>DigAgenda</h1>
+        <ul id="opt">
+            <li id="home"><a href="#"ins>Inicio</a></li>
+          <li><a href="#">Inserir</a></li>
+          <li id="favorite"><a hrf="#">Favoritos</a></li>
+        </ul>
+        <div id="divBusca">
+          <input type="text" id="txtBusca" placeholder="Buscar..." />
+          <img src="images/search.png" id="btnBusca" alt="Buscar" />
+        </div>
+      </nav>
+    </header>
+
+    <section id="contatos">
+      <ul id="lista"></ul>
+      <div class="contact_info" tabindex="1" id="root">
+        <img
+          id="close"
+          src="./images/cancel.png"
+          alt="botão fechar"
+          class="close"
+        />
+        <div id="cont_info"></div>
+      </div>
+      <div class="center">
+        <div class="pagination" id="page">
+          <a href="#" class="">&laquo;</a>
+          <a href="#">1</a>
+          <a href="#">&raquo;</a>
+        </div>
+      </div>
+    </section>
+
+    <footer id="rodape">
+      <p>
+        &copy; Copyright 2019 - by Raniel Santos
+      </p>
+    </footer>
+  </body>
+</html>

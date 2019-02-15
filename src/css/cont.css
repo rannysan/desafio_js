@@ -1,0 +1,140 @@
+.contGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 230px;
+  grid-template-columns: 300px 500px;
+}
+
+.picCont {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.picLarg {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin-left: -30px;
+}
+
+.infoBasic {
+  grid-row: 2;
+  grid-column: 1;
+  text-align: center;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.contato {
+  background-color: rgba(255, 255, 255, 0.74);
+  height: 500px;
+}
+
+.com::-webkit-scrollbar {
+  width: 12px;
+}
+
+.com::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+.com::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.infoCont {
+  grid-column: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  text-align: center;
+}
+
+.com {
+  font-family: 'Luckiest Guy', cursive;
+  border-style: none;
+  width: 515px;
+  height: 65px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+  resize: none;
+}
+
+/*fim das configurações de grid*/
+
+.contGrid h1 {
+  font-size: 20pt;
+}
+
+.infoBasic h1 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.contGrid p {
+  font-size: 11pt;
+}
+
+.contGrid h2 {
+  font-size: 16pt;
+}
+
+/*Icones*/
+
+.icon2 {
+  width: 40px;
+  height: 40px;
+  margin-left: 30px;
+  transition: transform 0.2s;
+}
+
+img.icon2:hover {
+  transform: scale(1.2);
+}
+
+/*Responsividade*/
+@media screen and (max-width: 1024px) {
+  .contGrid h1 {
+    font-size: 18pt;
+  }
+
+  .contGrid p {
+    font-size: 9pt;
+  }
+
+  .contGrid h2 {
+    font-size: 13pt;
+  }
+
+  #contPic {
+    height: 150px;
+    width: 150px;
+    margin-left: 110px;
+  }
+  .infoCont {
+    grid-column: 1;
+    text-align: center;
+    margin-top: -30px;
+  }
+
+  .infoBasic {
+    grid-column: 1;
+  }
+
+  .contGrid {
+    grid-auto-rows: 175px;
+  }
+
+  .icon2 {
+    width: 50px;
+    height: 50px;
+  }
+
+  .contato {
+    padding-top: 100px;
+    background-color: rgba(255, 255, 255, 0.74);
+    height: 800px;
+  }
+}
