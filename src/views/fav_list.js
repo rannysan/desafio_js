@@ -1,24 +1,26 @@
-import { Api } from '../services/Api.js';
 import editIcon from '../images/editIcon.png';
-import favBlack from '../images/starBlack.png';
-// import favColor from '../images/starColor.png';
 import delIcon from '../images/deleteIcon.png';
+import chunk from 'lodash/chunk';
+import { pagination } from '../services/functions';
 
-const renderFavList = () => {
-  const api = new Api();
-  const req = api.request();
-  return req
-    .then(result => result.json())
-    .then(data => {
-      let ul_ref = document.getElementById('lista');
-      ul_ref.innerHTML = '';
-      let img;
-      data.map(obj => {
-        if (obj.isFavorite) {
-          if (obj.isFavorite) img = require(`../images/starColor.png`);
-          else img = require(`../images/starBlack.png`);
+const renderFavList = (page) => {
+  const { favorites, loading } = window.state;
 
-          const markup = `<li class="optLista" id="${obj.id}">
+  pagination(favorites);
+  let pag = chunk(favorites, 10);
+  let page_act = pag[page];
+
+
+  const list_ref = document.getElementById('lista');
+
+  let html = '';
+  let img;
+
+  page_act.forEach(function(obj) {
+    if (obj.isFavorite) img = require('../images/starColor.png');
+    else img = require('../images/starBlack.png');
+    html += `
+      <li class="optLista" id="${obj.id}">
                     <section class="grid grid-row-5">
                         <div class="item item-2">
                             <img class="picCont" src="${
@@ -38,14 +40,16 @@ const renderFavList = () => {
                           <img class="icon" src="${delIcon}" title="Deletar" alt="imagem do contato">
                         </div>
                         <div class="favIcon">
-                            <img class="icon fav1" src="${img}" alt="estrela de favorito">
+                           <img class="icon fav1" src="${img}" alt="estrela de favorito">
                         </div>
                     </section>
-                    </li>`;
-          ul_ref.innerHTML += markup;
-        }
-      });
-    });
-};
+                    </li>
+      `;
+    if (loading) {
+      html = '<h1>Loading</h1>';
+    }
 
+    list_ref.innerHTML = html;
+  });
+};
 export default renderFavList;

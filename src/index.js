@@ -1,59 +1,45 @@
 import './index.css';
 import './css/cont.css';
-import renderList from './views/list';
-import renderContact_info from './views/contact_info';
-import renderFavList from './views/fav_list';
+import './css/insert.css';
+import { render, renderFav} from './services/functions';
+import renderNewCont from './views/new_cont';
 
-renderList().then(() => {
-  var icon = document.getElementsByClassName('vi');
-  Array.from(icon).forEach(function(element) {
-    element.addEventListener('click', () => {
-      const id = element.id;
-      renderContact_info(id);
-      return false;
-    });
-  });
-  var starFav = document.getElementsByClassName('fav1');
-  Array.from(starFav).forEach(function(element) {
-    element.addEventListener('click', () => {
-      let img = require('./images/starColor.png');
-      console.log(element.src);
-    });
-  });
+let is_fav = false;
+//inicialização
+render(0);
+
+//renderizar lista completa
+let home = document.getElementById('home');
+home.addEventListener('click', () => {
+  is_fav = render(0);
 });
 
-const homeBtn = document.getElementById('home');
-homeBtn.addEventListener('click', () => {
-  renderList().then(() => {
-    var icon = document.getElementsByClassName('vi');
-    Array.from(icon).forEach(function(element) {
-      element.addEventListener('click', () => {
-        const id = element.id;
-        renderContact_info(id);
-        return false;
-      });
-    });
-  });
+//renderizar lista de favoritos
+const fav = document.getElementById('favorite');
+fav.addEventListener('click', () => {
+  is_fav = renderFav(0);
 });
 
-var close = document.getElementById('close');
+//pegar numero de pagina e trocar pagina
+let page_list = document.getElementById('page');
+page_list.addEventListener('click', function(e) {
+  if (is_fav) {
+    renderFav(e.target.id);
+  } else {
+    render(e.target.id);
+  }
+});
+
+//Inserir novo contato
+let insert = document.getElementById('insert');
+insert.addEventListener('click', () => {
+  const root = document.getElementById('root');
+  renderNewCont();
+});
+
+//Close
+let close = document.getElementById('close');
 close.addEventListener('click', () => {
   const aa = document.getElementById('root');
   aa.style.display = 'none';
 });
-
-const favBtn = document.getElementById('favorite');
-favBtn.addEventListener('click', () => {
-  renderFavList().then(() => {
-    var icon = document.getElementsByClassName('vi');
-    Array.from(icon).forEach(function(element) {
-      element.addEventListener('click', () => {
-        const id = element.id;
-        renderContact_info(id);
-        return false;
-      });
-    });
-  });
-});
-
-//ativar favoritos

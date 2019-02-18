@@ -1,7 +1,5 @@
 import { Api } from '../services/Api.js';
 import editIcon from '../images/editIcon.png';
-import favBlack from '../images/starBlack.png';
-import favColor from '../images/starColor.png';
 import delIcon from '../images/deleteIcon.png';
 
 const renderContact_info = id => {
@@ -10,9 +8,7 @@ const renderContact_info = id => {
   return reqID
     .then(result => result.json())
     .then(data => {
-      console.log(data);
       const aa = document.getElementById('cont_info');
-      console.log('peguei o id=' + id);
       const cont = `
       <section id="informacao" class="contato contGrid">
       <div class="picCont">

@@ -1,0 +1,121 @@
+#forms{
+    background-color: rgba(255, 255, 255, 0.808);
+}
+
+#forms input{
+    margin: 20px;
+    padding: 5px;
+    font-size: 13pt;
+    border: 1px rgba(0, 0, 0, 0.568) solid;
+    border-radius: 3px;
+}
+
+#forms label{
+    font-size: 16pt;
+}
+
+.btn {
+    border-radius: 10px;
+    background-color: rgba(137, 43, 226, 0.856);
+    border-style: hidden;
+    padding: 8px;
+    margin: 10px;
+    transition: transform 1seg;
+}
+
+.btn:hover{
+transform: scale(1.5);
+cursor: pointer;
+
+}
+
+/*Grid*/
+.gridForm{
+    display: grid;
+	grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+}
+
+.picInfo{
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: center;
+
+}
+
+.infos{
+    grid-column-start: 2;
+}
+
+#urlfoto{
+    margin: 0px;
+}
+
+.moreInfos{
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.comInfo{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row: 2;
+}
+
+@media screen and (max-width: 1024px) {
+    #forms label{
+        font-size: 11pt;
+    }
+
+    #forms{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    #forms{
+        margin: auto;
+    }
+    .picInfo{
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .infos{
+        padding-top: 50px;
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .moreInfos{
+        padding-top: 250px;
+        grid-column: 1;
+        grid-row: 3;
+    }
+    .comInfo{
+        padding-top: 250px;
+        grid-column: 1;
+        grid-row: 4;
+    }
+
+    #comment{
+        height: 180px;
+        width: 300px;
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+   .response{
+        height: 80px;
+        width: 80px;
+    }
+
+    #rodape{
+        padding-top: 30px;
+    }
+
+    .center{
+        padding-top: 190px;
+    }
+}

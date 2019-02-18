@@ -1,24 +1,26 @@
-import { Api } from '../services/Api.js';
 import editIcon from '../images/editIcon.png';
-import favBlack from '../images/starBlack.png';
-// import favColor from '../images/starColor.png';
 import delIcon from '../images/deleteIcon.png';
+import chunk from 'lodash/chunk';
+import { pagination } from '../services/functions';
 
-const renderList = () => {
-  const api = new Api();
-  const req = api.request();
-  return req
-    .then(result => result.json())
-    .then(data => {
-      let ul_ref = document.getElementById('lista');
-      ul_ref.innerHTML = '';
-      let img;
-      data.map(obj => {
+const renderList = page => {
+  const { contacts, loading } = window.state;
 
-        if (obj.isFavorite) img = require(`../images/starColor.png`);
-        else img = require(`../images/starBlack.png`);
+  pagination(contacts);
+  let pag = chunk(contacts, 10);
+  let page_act = pag[page];
 
-const markup = `<li class="optLista" id="${obj.id}">
+
+  const list_ref = document.getElementById('lista');
+
+  let html = '';
+  let img;
+
+  page_act.forEach(function(obj) {
+    if (obj.isFavorite) img = require('../images/starColor.png');
+    else img = require('../images/starBlack.png');
+    html += `
+      <li class="optLista" id="${obj.id}">
                     <section class="grid grid-row-5">
                         <div class="item item-2">
                             <img class="picCont" src="${
@@ -41,10 +43,13 @@ const markup = `<li class="optLista" id="${obj.id}">
                            <img class="icon fav1" src="${img}" alt="estrela de favorito">
                         </div>
                     </section>
-                    </li>`;
-        ul_ref.innerHTML += markup;
-      });
-    });
-};
+                    </li>
+      `;
+    if (loading) {
+      html = '<h1>Loading</h1>';
+    }
 
+    list_ref.innerHTML = html;
+  });
+};
 export default renderList;

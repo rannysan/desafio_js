@@ -195,7 +195,12 @@ img.icon:hover {
   display: inline-block;
 }
 
+.close, .icon{
+  cursor: pointer;
+}
+
 .pagination a {
+  cursor: pointer;
   color: black;
   float: left;
   padding: 8px 16px;
