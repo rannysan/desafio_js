@@ -1,8 +1,7 @@
 import './index.css';
 import './css/cont.css';
 import './css/insert.css';
-import { render, renderFav} from './services/functions';
-import renderNewCont from './views/new_cont';
+import { render, renderFav, submit_insert, renderInsert} from './services/functions';
 
 let is_fav = false;
 //inicialização
@@ -34,7 +33,29 @@ page_list.addEventListener('click', function(e) {
 let insert = document.getElementById('insert');
 insert.addEventListener('click', () => {
   const root = document.getElementById('root');
-  renderNewCont();
+  renderInsert();
+
+  //botão cancelar
+  const cancel = document.getElementById('cancel');
+  cancel.addEventListener('click', () => {
+    const div = document.getElementById('root');
+    div.style.display = 'none';
+  });
+
+  //botão para carregar foto
+  const car = document.getElementById('pic_car');
+  car.addEventListener('click', () => {
+    const pic = document.getElementById('contPic');
+    const url = document.getElementById('urlpic');
+    pic.src = url.value;
+
+  });
+
+  //dar submit
+  const sub = document.getElementById('submit');
+  sub.addEventListener('click', () => {
+    submit_insert();
+  });
 });
 
 //Close

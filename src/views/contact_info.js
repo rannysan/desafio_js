@@ -41,7 +41,7 @@ const renderContact_info = id => {
           <h2>Comentarios:</h2>
           <textarea class="com" disabled>${data.info.comments}</textarea>
 
-          <a href="insert.html"><img class="icon2" src="${editIcon}" title="Visualizar"
+          <a id="editBtn"><img class="icon2" src="${editIcon}" title="update"
                   alt="imagem do contato"></a>
           <img class="icon2" src="${delIcon}" title="Deletar" alt="imagem do contato">
       </div>

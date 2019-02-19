@@ -6,7 +6,7 @@ body {
   background-image: url('images/back.jpg');
 }
 
-#favorite{
+#favorite {
   cursor: pointer;
 }
 
@@ -195,7 +195,8 @@ img.icon:hover {
   display: inline-block;
 }
 
-.close, .icon{
+.close,
+.icon {
   cursor: pointer;
 }
 

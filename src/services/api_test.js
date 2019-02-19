@@ -2,12 +2,13 @@ window.state = {
   loading: true,
   filter: '',
   contacts: [],
-  favorites: []
+  favorites: [],
+  pageNumber: ''
 };
 
 export const getAll = async () => {
   const res = await fetch(
-    'http://contacts-api.azurewebsites.net/api/contacts?=25'
+    'http://contacts-api.azurewebsites.net/api/contacts'
   );
   const data = await res.json();
   window.state = {

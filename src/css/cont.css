@@ -123,6 +123,10 @@ img.icon2:hover {
     grid-column: 1;
   }
 
+  .editBtn{
+    cursor: pointer;
+  }
+
   .contGrid {
     grid-auto-rows: 175px;
   }
@@ -130,6 +134,7 @@ img.icon2:hover {
   .icon2 {
     width: 50px;
     height: 50px;
+    cursor: pointer;
   }
 
   .contato {

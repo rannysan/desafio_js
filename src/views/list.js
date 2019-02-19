@@ -20,7 +20,7 @@ const renderList = page => {
     if (obj.isFavorite) img = require('../images/starColor.png');
     else img = require('../images/starBlack.png');
     html += `
-      <li class="optLista" id="${obj.id}">
+      <li class="optLista">
                     <section class="grid grid-row-5">
                         <div class="item item-2">
                             <img class="picCont" src="${
@@ -32,12 +32,10 @@ const renderList = page => {
                             <p>Telefone:</br> ${obj.info.phone}</p>
                             <p>Genero: </br> ${obj.gender}</p>
                         </div>
-                        <div id="edit-contact" class="item item-5">
-                          <a class="vi" id="${
-                            obj.id
-                          }"><img class="icon" src="${editIcon}" title="Visualizar"
+                        <div id="${obj.id}" class="item item-5">
+                          <a class="vi"><img class="icon" src="${editIcon}" title="Visualizar"
                           alt="imagem do contato"></a>
-                          <img class="icon" src="${delIcon}" title="Deletar" alt="imagem do contato">
+                          <img class="icon del" src="${delIcon}" title="Deletar" alt="imagem do contato">
                         </div>
                         <div class="favIcon">
                            <img class="icon fav1" src="${img}" alt="estrela de favorito">
