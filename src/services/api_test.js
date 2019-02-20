@@ -22,14 +22,22 @@ export const favAll = async () => {
   const { contacts } = window.state;
   let array = [];
 
-  await Array.from(contacts).forEach(function(element) {
-    if (element.isFavorite) {
-      array.push(element);
-    }
-  });
+  if(contacts != ''){
+    await Array.from(contacts).forEach(function(element) {
+      if (element.isFavorite) {
+        array.push(element);
+      }
+    });
+    localStorage.setItem("favList", JSON.stringify(array));
+  }
+
+
+
+  let a = JSON.parse(localStorage.favList);
+
   window.state = {
     ...window.state,
-    favorites: array,
+    favorites: a,
   };
 };
 

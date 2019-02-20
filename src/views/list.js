@@ -18,8 +18,16 @@ const renderList = page => {
   let img;
 
   page_act.forEach(function(obj) {
-    if (obj.isFavorite) img = require('../images/starColor.png');
-    else img = require('../images/starBlack.png');
+    let classFav = '';
+    if (obj.isFavorite){
+      img = require('../images/starColor.png');
+      classFav = 'isfavOn';
+    }
+    else {
+      img = require('../images/starBlack.png');
+      classFav = 'isfavOff';
+    }
+
     html += `
       <li class="optLista">
                     <section class="grid grid-row-5">
@@ -39,7 +47,7 @@ const renderList = page => {
                           <img class="icon del" src="${delIcon}" title="Deletar" alt="imagem do contato">
                         </div>
                         <div class="favIcon">
-                           <img class="icon fav1" src="${img}" alt="estrela de favorito">
+                           <img class="icon fav1 ${classFav}" id="${obj.firstName}" src="${img}" alt="estrela de favorito">
                         </div>
                     </section>
                     </li>

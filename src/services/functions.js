@@ -40,15 +40,22 @@ export const render = page => {
         });
       });
 
-      const search = document.getElementById('txtBusca');
+      const favsArray = document.getElementsByClassName('fav1');
+      Array.from(favsArray).forEach(function(element) {
+        element.addEventListener('click', () => {
+          if(element.className == 'icon fav1 isfavOn'){
+            element.src = require('../images/starBlack.png');
+            element.className = 'icon fav1 isfavOff';
+            favorite(element.id);
+          }else if(element.className == 'icon fav1 isfavOff'){
+            element.src = require('../images/starColor.png');
+            element.className = 'icon fav1 isfavOn';
+            favorite(element.id);
+            console.log(element.id)
+          }
+        });
+      });
 
-      search.onkeyup = ({ target: { value } }) => {
-        window.state = {
-          ...window.state,
-          filter: value,
-        };
-        renderList(page);
-      };
     });
   } else {
     renderList(page);
@@ -70,15 +77,20 @@ export const render = page => {
         });
       });
 
-    const search = document.getElementById('txtBusca');
-
-    search.onkeyup = ({ target: { value } }) => {
-      window.state = {
-        ...window.state,
-        filter: value,
-      };
-      renderList(page);
-    };
+      const favsArray = document.getElementsByClassName('fav1');
+      Array.from(favsArray).forEach(function(element) {
+        element.addEventListener('click', () => {
+          if(element.className == 'icon fav1 isfavOn'){
+            element.src = require('../images/starBlack.png');
+            element.className = 'icon fav1 isfavOff';
+            favorite(element.id);
+          }else if(element.className == 'icon fav1 isfavOff'){
+            element.src = require('../images/starColor.png');
+            element.className = 'icon fav1 isfavOn';
+            favorite(element.id);
+          }
+        });
+      });
   }
 
   return false;
@@ -97,15 +109,30 @@ export const renderFav = page => {
       });
     });
 
-    const search = document.getElementById('txtBusca');
+    const favsArray = document.getElementsByClassName('fav1');
+      Array.from(favsArray).forEach(function(element) {
+        element.addEventListener('click', () => {
+          if(element.className == 'icon fav1 isfavOn'){
+            element.src = require('../images/starBlack.png');
+            element.className = 'icon fav1 isfavOff';
+            favorite(element.id);
+          }else if(element.className == 'icon fav1 isfavOff'){
+            element.src = require('../images/starColor.png');
+            element.className = 'icon fav1 isfavOn';
+            favorite(element.id);
+            console.log(element.id)
+          }
+        });
+      });
 
-    search.onkeyup = ({ target: { value } }) => {
-      window.state = {
-        ...window.state,
-        filter: value,
-      };
-      renderFavList(page);
-    };
+      var del = document.getElementsByClassName('del');
+      Array.from(del).forEach(function(element) {
+        element.addEventListener('click', () => {
+          const id = element.parentNode.id;
+          confirm(id);
+          return false;
+        });
+      });
   });
 
   return true;
@@ -119,7 +146,7 @@ export const pagination = (array, page) => {
   pag.innerHTML = html;
   let i = page;
   i++;
-  let limit = i + 5;
+  let limit = i + 2;
 
     if(i < 3){
       i = 1;
@@ -183,9 +210,9 @@ let insert = async(obj) => {
     "isFavorite": obj.isFavorite,
     "company": obj.company,
     "avatar": obj.avatar,
-    "address": obj.adress,
+    "address": obj.address,
     "phone": obj.phone,
-    "comments": obj.comment
+    "comments": obj.comments
   });
 
   try{
@@ -418,3 +445,30 @@ export const submit_update = (id) => {
     }
   }
 };
+
+//Fovoritos
+
+export const favorite = (name) =>{
+  const {contacts} = window.state;
+  const end = findIndex(contacts, function(o) { return o.firstName == name; });
+  let fav;
+  if(contacts[end].isFavorite){
+    fav = false;
+  }else{
+    fav = true;
+  }
+
+  let obj = {
+    firstName: contacts[end].firstName,
+    lastName: contacts[end].lastName,
+    email: contacts[end].email,
+    gender: contacts[end].gender,
+    isFavorite: fav,
+    company: contacts[end].info.company,
+    avatar: contacts[end].info.avatar,
+    address: contacts[end].info.address,
+    phone: contacts[end].info.phone,
+    comments: contacts[end].info.comments
+  };
+  update(obj, contacts[end].id);
+}

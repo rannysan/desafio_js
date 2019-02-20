@@ -1,22 +1,35 @@
 import './index.css';
 import './css/cont.css';
 import './css/insert.css';
-import { render, renderFav, submit_insert, renderInsert} from './services/functions';
+import {
+  render,
+  renderFav,
+  submit_insert,
+  renderInsert,
+} from './services/functions';
+
 
 let is_fav = false;
+console.log(JSON.parse(localStorage['favOn']));
 //inicialização
-render(0);
+if (JSON.parse(localStorage['favOn'])) {
+  renderFav(0);
+} else {
+  render(0);
+}
 
 //renderizar lista completa
 let home = document.getElementById('home');
 home.addEventListener('click', () => {
   is_fav = render(0);
+  localStorage['favOn'] = JSON.stringify(is_fav);
 });
 
 //renderizar lista de favoritos
 const fav = document.getElementById('favorite');
 fav.addEventListener('click', () => {
   is_fav = renderFav(0);
+  localStorage['favOn'] = JSON.stringify(is_fav);
 });
 
 //pegar numero de pagina e trocar pagina
@@ -48,7 +61,6 @@ insert.addEventListener('click', () => {
     const pic = document.getElementById('contPic');
     const url = document.getElementById('urlpic');
     pic.src = url.value;
-
   });
 
   //dar submit
