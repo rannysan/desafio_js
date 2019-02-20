@@ -336,9 +336,9 @@ export const update = async(obj, id) => {
     "isFavorite": obj.isFavorite,
     "company": obj.company,
     "avatar": obj.avatar,
-    "address": obj.adress,
+    "address": obj.address,
     "phone": obj.phone,
-    "comments": obj.comment
+    "comments": obj.comments
   });
 
   try{
@@ -390,6 +390,7 @@ export const submit_update = (id) => {
   let adress = document.getElementById('adress').value;
   let phone = document.getElementById('phone').value;
   let comment = document.getElementById('comment').value;
+
 
 
   if (firstName == '' || lastName == '' || adress == '' || phone == '' || company == '') {

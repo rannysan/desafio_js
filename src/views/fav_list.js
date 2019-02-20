@@ -6,7 +6,7 @@ import { pagination } from '../services/functions';
 const renderFavList = (page) => {
   const { favorites, loading } = window.state;
 
-  pagination(favorites);
+  pagination(favorites, page);
   let pag = chunk(favorites, 10);
   let page_act = pag[page];
 

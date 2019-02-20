@@ -57,7 +57,7 @@ const renderNewCont = (obj) => {
             <input type="text" name="lastname" id="lname" placeholder="Ultimo nome" value="${obj.lastName}"  maxlength="15"></br>
 
             <label for="adress">Endereço:</label><br>
-            <input type="text" name="adrInfo" id="adress" placeholder="Rua/av, bairro, nº" value="${obj.adress}"  /><br>
+            <input type="text" name="adrInfo" id="adress" placeholder="Rua/av, bairro, nº" value="${obj.address}"  /><br>
 
             <label for="phone">Telefone:</label><br>
             <input type="text" name="telInfo" id="phone" placeholder="(xx)xxxxx-xxxx" value="${obj.phone}" ><br>
