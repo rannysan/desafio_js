@@ -6,7 +6,8 @@ import { pagination } from '../services/functions';
 const renderList = page => {
   const { contacts, loading } = window.state;
 
-  pagination(contacts);
+
+  pagination(contacts, page);
   let pag = chunk(contacts, 10);
   let page_act = pag[page];
 

@@ -18,10 +18,8 @@ export const render = page => {
   };
 
   //renderList(0);
-  console.log('aki')
   const { contacts } = window.state;
   if (contacts == '') {
-    console.log('aki2');
     getAll().then(() => {
       renderList(page);
       var icon = document.getElementsByClassName('vi');
@@ -37,7 +35,7 @@ export const render = page => {
       Array.from(del).forEach(function(element) {
         element.addEventListener('click', () => {
           const id = element.parentNode.id;
-          removecont(id);
+          confirm(id);
           return false;
         });
       });
@@ -53,7 +51,6 @@ export const render = page => {
       };
     });
   } else {
-    console.log('aki3');
     renderList(page);
     var icon = document.getElementsByClassName('vi');
     Array.from(icon).forEach(function(element) {
@@ -68,7 +65,7 @@ export const render = page => {
       Array.from(del).forEach(function(element) {
         element.addEventListener('click', () => {
           const id = element.parentElement.id;
-          removecont(id);
+          confirm(id);
           return false;
         });
       });
@@ -115,23 +112,40 @@ export const renderFav = page => {
 };
 
 //paginação
-export const pagination = array => {
+export const pagination = (array, page) => {
   let number_page = chunk(array, 10);
   let html = '';
   let pag = document.getElementById('page');
   pag.innerHTML = html;
+  let i = page;
+  i++;
+  let limit = i + 5;
 
-  for (var i = 1; i <= number_page.length; i++) {
-    html = `<a href="#" class="pages" id="${i - 1}">${i}</a>`;
-    pag.innerHTML += html;
-  }
+    if(i < 3){
+      i = 1;
+    }else{
+      i -= 2;
+    }
+
+    pag.innerHTML += `<a href="#" class="pages" id="0">Inicio</a>`;
+    for (i ; i <= limit; i++) {
+      if(i != number_page.length){
+        html = `<a href="#" class="pages" id="${i - 1}">${i}</a>`;
+        pag.innerHTML += html;
+      }else{
+        break;
+      }
+    }
+    pag.innerHTML += `<a href="#" class="pages" id="${number_page.length - 1}">Fim</a>`;
+
+    document.getElementById(page).style.backgroundColor = '#694b91';
 
   return 0;
 };
 
 //Aqui começo a lidar com o atualizar/inserir e excluir
 
-let obj = {
+let obj_init = {
   firstName: '',
   lastName: '',
   email: '',
@@ -145,7 +159,7 @@ let obj = {
 };
 
 export const renderInsert = () => {
-  renderNewCont(obj);
+  renderNewCont(obj_init);
 };
 
 export const renderUpdate = id => {
@@ -182,13 +196,27 @@ let insert = async(obj) => {
       body: JSON.stringify(cont)
     }
     );
-    if(res.status==200){
+    if(res.status==201){
       console.log('Cadastrado com sucesso!');
+      const { contacts } = window.state;
+
+      window.state = {
+        ...window.state,
+        contacts: ''
+      }
+
+      render(0);
+      document.getElementById('root').style.display = 'none';
+      alertSucess('Cadastrado com sucesso!');
+      return true;
+    }
+    else if(res.status==400){
+      alert('Preencha os campos corretamente!');
       return true;
     }
 
   }catch(err){
-    console.log('Erro: ' +err);
+    console.error('Erro: ' +err);
     return false;
   }
 };
@@ -206,8 +234,13 @@ export const submit_insert = () => {
   let phone = document.getElementById('phone').value;
   let comment = document.getElementById('comment').value;
 
-  if (firstName != '') {
-    obj = {
+
+  if (firstName == '' || lastName == '' || adress == '' || phone == '' || company == '') {
+
+    alert('preencha os campos necessários');
+
+  } else {
+    let obj = {
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -219,26 +252,20 @@ export const submit_insert = () => {
       phone: phone,
       comments: comment,
     };
-    console.log(obj);
+
     if(insert(obj)){
       console.log('cadastrado')
     }else{
       console.log('erro')
     }
-
-  } else {
-    alert('preencha os campos necessários');
   }
 };
 
 
 //remover
 export const removecont = (proto_id) =>{
-  console.log(proto_id);
-
   api.removeId(proto_id);
   let { contacts, favorites, pageNumber } = window.state;
-  console.log();
   contacts.splice(findIndex(contacts, function(o) { return o.id == proto_id; }), 1);
   favorites.splice(findIndex(contacts, function(o) { return o.id == proto_id; }), 1);
   console.log(contacts);
@@ -249,3 +276,144 @@ export const removecont = (proto_id) =>{
   };
   render(pageNumber);
 }
+
+
+//alerta e confirmação
+export const confirm = (id) =>{
+  const div_alert = document.getElementById('alert');
+  let html = ``;
+  div_alert.innerHTML = html;
+  html = `
+    <h3> Você realmente deseja excluir?</h1>
+    <input class="btn" id="yes" type="button" value="Sim">
+    <input class="btn" id="no" type="button" value="Nao">
+  `;
+
+  div_alert.innerHTML = html;
+  div_alert.style.display = 'block';
+  div_alert.focus();
+
+  const btn_yes = document.getElementById('yes');
+  btn_yes.addEventListener('click', () =>{
+    div_alert.style.display = 'none';
+    removecont(id);
+    return true;
+  });
+  const btn_no = document.getElementById('no');
+  btn_no.addEventListener('click', () =>{
+    div_alert.style.display = 'none';
+  });
+}
+
+const alertSucess = (string) =>{
+  const alert = document.getElementById('alert');
+      let html = ``;
+      alert.innerHTML = html;
+      html = `
+        <h2>${string}</h2>
+        <input class="btn" id="closeAlert" type="button" value="Fechar">
+      `;
+
+      alert.innerHTML = html;
+      alert.style.display = 'block';
+      alert.focus();
+
+    const btn= document.getElementById('closeAlert');
+    btn.addEventListener('click', () =>{
+    alert.style.display = 'none';
+  });
+}
+
+
+//atualizar contato
+export const update = async(obj, id) => {
+
+  let cont = ({
+    "firstName": obj.firstName,
+    "lastName": obj.lastName,
+    "email": obj.email,
+    "gender": obj.gender,
+    "isFavorite": obj.isFavorite,
+    "company": obj.company,
+    "avatar": obj.avatar,
+    "address": obj.adress,
+    "phone": obj.phone,
+    "comments": obj.comment
+  });
+
+  try{
+    const res = await fetch('http://contacts-api.azurewebsites.net/api/contacts/' + id ,
+    {
+      method: 'PUT',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(cont)
+    }
+    );
+    if(res.status==200){
+      console.log('Atualizado com sucesso!');
+      const { contacts } = window.state;
+
+      window.state = {
+        ...window.state,
+        contacts: ''
+      }
+      render(0);
+      document.getElementById('root').style.display = 'none';
+      alertSucess('Atualizado com sucesso!');
+      return true;
+    }
+    else if(res.status==400){
+      alert('Preencha os campos corretamente!');
+      return true;
+    }
+
+  }catch(err){
+    console.error('Erro: ' +err);
+    return false;
+  }
+};
+
+export const submit_update = (id) => {
+
+  let form = document.getElementById('formComplete');
+  let urlPic;
+  if(document.getElementById('urlpic').value == ''){
+    urlPic = document.getElementById('urlpic').src;
+  }else{
+    urlPic = document.getElementById('urlpic').value;
+  }
+  let gender = document.getElementById('genForm').gender.value;
+  let firstName = form.firstname.value;
+  let email = form.mailInfo.value;
+  let company = form.compInfo.value;
+  let lastName = document.getElementById('lname').value;
+  let adress = document.getElementById('adress').value;
+  let phone = document.getElementById('phone').value;
+  let comment = document.getElementById('comment').value;
+
+
+  if (firstName == '' || lastName == '' || adress == '' || phone == '' || company == '') {
+
+    alert('preencha os campos necessários');
+
+  } else {
+    let obj = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      gender: gender,
+      isFavorite: false,
+      company: company,
+      avatar: urlPic,
+      address: adress,
+      phone: phone,
+      comments: comment,
+    };
+
+    if(update(obj, id)){
+      console.log('atualizado')
+    }else{
+      console.log('erro')
+    }
+  }
+};

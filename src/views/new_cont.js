@@ -1,22 +1,42 @@
-
+import { submit_update } from '../services/functions';
 
 const renderNewCont = (obj) => {
   const div = document.getElementById('cont_info');
+  let avatar;
+  let idBtn;
+  let mCheck = '';
+  let fCheck = '';
+  if(obj.avatar == ''){
+    avatar = require('../images/ContatoEx.png');
+    idBtn = 'submit';
+  }
+  else{
+    avatar = obj.avatar;
+    idBtn = 'update';
+  }
+
+  if(obj.gender == 'm'){
+    mCheck = 'checked';
+  }else{
+    fCheck = 'checked';
+  }
+
+
   const cont = `
       <section id="forms" class="gridForm">
         <div class="picInfo">
-            <img id="contPic" class="response picLarg" src="${obj.avatar}" alt="imagem do contato">
+            <img id="contPic" class="response picLarg" src="${avatar}" alt="imagem do contato">
             <br>Adicione URL</label><br>
-            <input type="text" id="urlpic" placeholder="url da foto"><br>
+            <input type="text" id="urlpic" placeholder="url da foto" value="${avatar}"><br>
             <button class="btn"  id="pic_car" type="button">Carregar</button>
         </div>
 
         <div clasS="gen_info">
         <form id="genForm">
         <label>Genero:</label></br>
-           <input type="radio" name="gender" id="m" value="m" checked> <label for="male">
+           <input type="radio" name="gender" id="m" value="m" ${mCheck}> <label for="male">
              Masculino</label><br>
-           <input type="radio" name="gender" id="f" value="f"><label for="female"> Feminino </label><br>
+           <input type="radio" name="gender" id="f" value="f" ${fCheck}><label for="female"> Feminino </label><br>
           </form>
         </div>
 
@@ -46,12 +66,12 @@ const renderNewCont = (obj) => {
 
         <div class="comInfo">
             <label for="comment">Comentarios:</label>
-            <textarea name="comInfo"  class="com_grid" id="comment" cols="73" rows="8" value="${obj.comment}" ></textarea>
+            <textarea name="comInfo"  class="com_grid" id="comment" cols="73" rows="8" value="Comments" >${obj.comments}</textarea>
         </div>
 
     </section>
     <div class="center input_info">
-        <input class="btn" type="button" id="submit" value="Cadastrar">
+        <input class="btn" type="button" id="${idBtn}" value="Cadastrar">
         <a><input class="btn" type="button" id="cancel" value="Cancelar"></a>
     </div>
     </form>
@@ -59,6 +79,19 @@ const renderNewCont = (obj) => {
   div.innerHTML = cont;
   document.getElementById('root').style.display = 'block';
   div.focus();
+
+  if(idBtn == 'update'){
+    const upd = document.getElementById('update');
+    upd.addEventListener('click', () =>{
+
+      submit_update(obj.id);
+    })
+
+    const cancel = document.getElementById('cancel');
+    cancel.addEventListener('click', () =>{
+      document.getElementById('root').style.display = 'none';
+    })
+  }
 };
 
 export default renderNewCont;

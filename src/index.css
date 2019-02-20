@@ -6,6 +6,24 @@ body {
   background-image: url('images/back.jpg');
 }
 
+.alertPop{
+  display: none;
+  z-index: 99;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -10px;
+  margin-right: 0px;
+  padding: 10px;
+  width: 300px;
+  height: 120px;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  background-image: url('./images/back.jpg');
+  background-color: rgba(255, 255, 255, 0.822);
+}
+
 #favorite {
   cursor: pointer;
 }
