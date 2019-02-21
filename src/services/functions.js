@@ -481,12 +481,7 @@ export const contSearch = () =>{
   let txt = (search.value).toLowerCase();
   div_result.innerHTML = '';
   let searchResults=[];
-  const regex = new RegExp(/^([a-zA-Zà-úÀ-Ú0-9]|'|\s)+$/);
-  searchResults=contacts.filter(c => { const completeName = `${c.firstName} ${c.lastName}`.toLowerCase()
-    if(completeName.includes(txt)){
-      return c;
-    }
-  });
+  searchResults=contacts.filter(c => new RegExp(txt, 'ig').test(`${c.firstName} ${c.lastName}`.toLowerCase()));
 
   for(let i = 0; i <searchResults.length; i++){
     let cont = document.createElement('li');

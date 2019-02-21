@@ -111,35 +111,86 @@ img.icon2:hover {
   #contPic {
     height: 150px;
     width: 150px;
-    margin-left: 110px;
   }
   .infoCont {
-    grid-column: 1;
+    grid-column: 2;
     text-align: center;
     margin-top: -30px;
   }
 
-  .infoBasic {
-    grid-column: 1;
+  .com{
+    width: 415px;
   }
 
-  .editBtn{
+  .infoBasic {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .picCont{
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .editBtn {
     cursor: pointer;
   }
 
   .contGrid {
     grid-auto-rows: 175px;
+    margin-top: 0px;
+    padding: 0px;
+    grid-auto-rows: 200px;
+    grid-template-columns: 180px 450px;
   }
 
   .icon2 {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
   }
 
   .contato {
-    padding-top: 100px;
     background-color: rgba(255, 255, 255, 0.74);
-    height: 800px;
+    height: 400px;
   }
+}
+
+@media screen and (max-width: 650px) {
+  .contact_info {
+    width: 255px;
+    height: 850px;
+    margin-left: -210;
+    text-align: center;
+  }
+
+  .infoCont {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: center;
+    margin-top: -30px;
+  }
+
+  .com{
+    width: 215px;
+  }
+
+  .infoBasic {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .picCont{
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .contGrid{
+    margin-left: 30px;
+  }
+
+  .contato{
+    height: 850px;
+  }
+
 }
