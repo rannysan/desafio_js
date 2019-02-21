@@ -5,7 +5,6 @@ import { pagination } from '../services/functions';
 
 const renderFavList = page => {
   const { favorites } = window.state;
-  console.log(favorites);
 
   pagination(favorites, page);
   let pag = chunk(favorites, 10);
@@ -17,7 +16,6 @@ const renderFavList = page => {
   let img;
 
   page_act.forEach(function(obj) {
-    console.log('teste')
     let classFav = '';
     if (obj.isFavorite) {
       img = require('../images/starColor.png');

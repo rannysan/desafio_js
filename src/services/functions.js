@@ -332,7 +332,7 @@ export const confirm = (id) =>{
   });
 }
 
-const alertSucess = (string) =>{
+export const alertSucess = (string) =>{
   const alert = document.getElementById('alert');
       let html = ``;
       alert.innerHTML = html;
@@ -471,4 +471,33 @@ export const favorite = (name) =>{
     comments: contacts[end].info.comments
   };
   update(obj, contacts[end].id);
+}
+
+//Buscar
+export const contSearch = () =>{
+  const search = document.getElementById('txtBusca');
+  const div_result = document.getElementById('results');
+  const { contacts } = window.state;
+  let txt = (search.value).toLowerCase();
+  div_result.innerHTML = '';
+  let searchResults=[];
+  const regex = new RegExp(/^([a-zA-Zà-úÀ-Ú0-9]|'|\s)+$/);
+  searchResults=contacts.filter(c => { const completeName = `${c.firstName} ${c.lastName}`.toLowerCase()
+    if(completeName.includes(txt)){
+      return c;
+    }
+  });
+
+  for(let i = 0; i <searchResults.length; i++){
+    let cont = document.createElement('li');
+
+    cont.innerHTML=`<img src="${searchResults[i].info.avatar}" width='60px' height='60px'/> ${searchResults[i].firstName} ${searchResults[i].lastName}`
+
+    cont.addEventListener('click', () =>{
+      renderContact_info(searchResults[i].id);
+    })
+    div_result.appendChild(cont);
+  }
+
+
 }

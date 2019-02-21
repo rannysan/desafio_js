@@ -4,14 +4,26 @@ import './css/insert.css';
 import {
   render,
   renderFav,
-  submit_insert,
+  contSearch,
   renderInsert,
 } from './services/functions';
 
+let is_fav = '';
+let aLength = localStorage.length;
+let aKey;
 
-let is_fav = false;
-console.log(JSON.parse(localStorage['favOn']));
-//inicialização
+if (is_fav == '') {
+  is_fav = false;
+  for (let i = 0; i <= aLength; i++) {
+    aKey = localStorage.key(i);
+    if (aKey == 'favOn') {
+      break;
+    } else if (i == aLength) {
+      localStorage['favOn'] = JSON.stringify(is_fav);
+    }
+  }
+}
+
 if (JSON.parse(localStorage['favOn'])) {
   renderFav(0);
 } else {
@@ -47,27 +59,6 @@ let insert = document.getElementById('insert');
 insert.addEventListener('click', () => {
   const root = document.getElementById('root');
   renderInsert();
-
-  //botão cancelar
-  const cancel = document.getElementById('cancel');
-  cancel.addEventListener('click', () => {
-    const div = document.getElementById('root');
-    div.style.display = 'none';
-  });
-
-  //botão para carregar foto
-  const car = document.getElementById('pic_car');
-  car.addEventListener('click', () => {
-    const pic = document.getElementById('contPic');
-    const url = document.getElementById('urlpic');
-    pic.src = url.value;
-  });
-
-  //dar submit
-  const sub = document.getElementById('submit');
-  sub.addEventListener('click', () => {
-    submit_insert();
-  });
 });
 
 //Close
@@ -76,3 +67,22 @@ close.addEventListener('click', () => {
   const aa = document.getElementById('root');
   aa.style.display = 'none';
 });
+
+//buscar
+const search = document.getElementById('txtBusca');
+search.onfocus = () => {
+  const div_result = document.getElementById('results');
+  div_result.style.display = 'block';
+  contSearch();
+};
+search.onkeyup = () => {
+  contSearch();
+};
+search.onblur = () => {
+  setTimeout(function() {
+    const div_result = document.getElementById('results');
+    const search = document.getElementById('txtBusca');
+    search.value = '';
+    div_result.style.display = 'none';
+  }, 200);
+};
