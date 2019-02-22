@@ -8,8 +8,8 @@ const renderList = page => {
 
 
   pagination(contacts, page);
-  let pag = chunk(contacts, 10);
-  let page_act = pag[page];
+  const pag = chunk(contacts, 10);
+  const page_act = pag[page];
 
 
   const list_ref = document.getElementById('lista');
