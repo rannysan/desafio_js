@@ -7,8 +7,8 @@ const renderFavList = page => {
   const { favorites } = window.state;
 
   pagination(favorites, page);
-  let pag = chunk(favorites, 10);
-  let page_act = pag[page];
+  const pag = chunk(favorites, 10);
+  const page_act = pag[page];
 
   const list_ref = document.getElementById('lista');
 

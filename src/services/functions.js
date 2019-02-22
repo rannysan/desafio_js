@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { getAll, favAll } from '../services/api_test';
 import renderList from '../views/list';
 import renderContact_info from '../views/contact_info';
@@ -11,7 +12,6 @@ const api = new Api();
 
 //renderizar lista completa
 export const render = page => {
-  let { pageNumber } = window.state;
   window.state = {
     ...window.state,
     pageNumber: page
@@ -22,7 +22,7 @@ export const render = page => {
   if (contacts == '') {
     getAll().then(() => {
       renderList(page);
-      var icon = document.getElementsByClassName('vi');
+      const icon = document.getElementsByClassName('vi');
       Array.from(icon).forEach(function(element) {
         element.addEventListener('click', () => {
           const id = element.parentElement.id;
@@ -31,7 +31,7 @@ export const render = page => {
         });
       });
 
-      var del = document.getElementsByClassName('del');
+      const del = document.getElementsByClassName('del');
       Array.from(del).forEach(function(element) {
         element.addEventListener('click', () => {
           const id = element.parentNode.id;
@@ -59,7 +59,7 @@ export const render = page => {
     });
   } else {
     renderList(page);
-    var icon = document.getElementsByClassName('vi');
+    const icon = document.getElementsByClassName('vi');
     Array.from(icon).forEach(function(element) {
       element.addEventListener('click', () => {
         const id = element.parentElement.id;
@@ -68,7 +68,7 @@ export const render = page => {
       });
     });
 
-    var del = document.getElementsByClassName('del');
+    const del = document.getElementsByClassName('del');
       Array.from(del).forEach(function(element) {
         element.addEventListener('click', () => {
           const id = element.parentElement.id;
@@ -100,7 +100,7 @@ export const render = page => {
 export const renderFav = page => {
   favAll().then(() => {
     renderFavList(page);
-    var icon = document.getElementsByClassName('vi');
+    const icon = document.getElementsByClassName('vi');
     Array.from(icon).forEach(function(element) {
       element.addEventListener('click', () => {
         const id = element.parentElement.id;
@@ -125,7 +125,7 @@ export const renderFav = page => {
         });
       });
 
-      var del = document.getElementsByClassName('del');
+      const del = document.getElementsByClassName('del');
       Array.from(del).forEach(function(element) {
         element.addEventListener('click', () => {
           const id = element.parentNode.id;
@@ -140,13 +140,13 @@ export const renderFav = page => {
 
 //paginação
 export const pagination = (array, page) => {
-  let number_page = chunk(array, 10);
+  const number_page = chunk(array, 10);
   let html = '';
-  let pag = document.getElementById('page');
+  const pag = document.getElementById('page');
   pag.innerHTML = html;
   let i = page;
   i++;
-  let limit = i + 2;
+  const limit = i + 2;
 
     if(i < 3){
       i = 1;
@@ -172,7 +172,7 @@ export const pagination = (array, page) => {
 
 //Aqui começo a lidar com o atualizar/inserir e excluir
 
-let obj_init = {
+const obj_init = {
   firstName: '',
   lastName: '',
   email: '',
@@ -192,17 +192,12 @@ export const renderInsert = () => {
 export const renderUpdate = id => {
   const res = api.requestID(id);
   console.log(res);
-  // return res
-  // .then(result => result.json())
-  // .then(data => {
-
-  // });
   renderNewCont(obj);
 };
 
-let insert = async(obj) => {
+const insert = async(obj) => {
 
-  let cont = ({
+  const cont = ({
     "firstName": obj.firstName,
     "lastName": obj.lastName,
     "email": obj.email,
@@ -225,7 +220,6 @@ let insert = async(obj) => {
     );
     if(res.status==201){
       console.log('Cadastrado com sucesso!');
-      const { contacts } = window.state;
 
       window.state = {
         ...window.state,
@@ -250,16 +244,16 @@ let insert = async(obj) => {
 
 //Submit
 export const submit_insert = () => {
-  let form = document.getElementById('formComplete');
-  let urlPic = document.getElementById('urlpic').value;
-  let gender = document.getElementById('genForm').gender.value;
-  let firstName = form.firstname.value;
-  let email = form.mailInfo.value;
-  let company = form.compInfo.value;
-  let lastName = document.getElementById('lname').value;
-  let adress = document.getElementById('adress').value;
-  let phone = document.getElementById('phone').value;
-  let comment = document.getElementById('comment').value;
+  const form = document.getElementById('formComplete');
+  const urlPic = document.getElementById('urlpic').value;
+  const gender = document.getElementById('genForm').gender.value;
+  const firstName = form.firstname.value;
+  const email = form.mailInfo.value;
+  const company = form.compInfo.value;
+  const lastName = document.getElementById('lname').value;
+  const adress = document.getElementById('adress').value;
+  const phone = document.getElementById('phone').value;
+  const comment = document.getElementById('comment').value;
 
 
   if (firstName == '' || lastName == '' || company == '') {
@@ -267,7 +261,7 @@ export const submit_insert = () => {
     alert('preencha os campos necessários');
 
   } else {
-    let obj = {
+    const obj = {
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -292,7 +286,7 @@ export const submit_insert = () => {
 //remover
 export const removecont = (proto_id) =>{
   api.removeId(proto_id);
-  let { contacts, favorites, pageNumber } = window.state;
+  const { contacts, favorites, pageNumber } = window.state;
   contacts.splice(findIndex(contacts, function(o) { return o.id == proto_id; }), 1);
   favorites.splice(findIndex(contacts, function(o) { return o.id == proto_id; }), 1);
   console.log(contacts);
@@ -355,7 +349,7 @@ export const alertSucess = (string) =>{
 //atualizar contato
 export const update = async(obj, id) => {
 
-  let cont = ({
+  const cont = ({
     "firstName": obj.firstName,
     "lastName": obj.lastName,
     "email": obj.email,
@@ -378,7 +372,6 @@ export const update = async(obj, id) => {
     );
     if(res.status==200){
       console.log('Atualizado com sucesso!');
-      const { contacts } = window.state;
 
       window.state = {
         ...window.state,
@@ -402,21 +395,21 @@ export const update = async(obj, id) => {
 
 export const submit_update = (id) => {
 
-  let form = document.getElementById('formComplete');
+  const form = document.getElementById('formComplete');
   let urlPic;
   if(document.getElementById('urlpic').value == ''){
     urlPic = document.getElementById('urlpic').src;
   }else{
     urlPic = document.getElementById('urlpic').value;
   }
-  let gender = document.getElementById('genForm').gender.value;
-  let firstName = form.firstname.value;
-  let email = form.mailInfo.value;
-  let company = form.compInfo.value;
-  let lastName = document.getElementById('lname').value;
-  let adress = document.getElementById('adress').value;
-  let phone = document.getElementById('phone').value;
-  let comment = document.getElementById('comment').value;
+  const gender = document.getElementById('genForm').gender.value;
+  const firstName = form.firstname.value;
+  const email = form.mailInfo.value;
+  const company = form.compInfo.value;
+  const lastName = document.getElementById('lname').value;
+  const adress = document.getElementById('adress').value;
+  const phone = document.getElementById('phone').value;
+  const comment = document.getElementById('comment').value;
 
 
 
@@ -425,7 +418,7 @@ export const submit_update = (id) => {
     alert('preencha os campos necessários');
 
   } else {
-    let obj = {
+    const obj = {
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -458,7 +451,7 @@ export const favorite = (name) =>{
     fav = true;
   }
 
-  let obj = {
+  const obj = {
     firstName: contacts[end].firstName,
     lastName: contacts[end].lastName,
     email: contacts[end].email,
@@ -478,13 +471,13 @@ export const contSearch = () =>{
   const search = document.getElementById('txtBusca');
   const div_result = document.getElementById('results');
   const { contacts } = window.state;
-  let txt = (search.value).toLowerCase();
+  const txt = (search.value).toLowerCase();
   div_result.innerHTML = '';
   let searchResults=[];
   searchResults=contacts.filter(c => new RegExp(txt, 'ig').test(`${c.firstName} ${c.lastName}`.toLowerCase()));
 
   for(let i = 0; i <searchResults.length; i++){
-    let cont = document.createElement('li');
+    const cont = document.createElement('li');
 
     cont.innerHTML=`<img src="${searchResults[i].info.avatar}" width='60px' height='60px'/> ${searchResults[i].firstName} ${searchResults[i].lastName}`
 

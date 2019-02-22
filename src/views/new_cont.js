@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {
   submit_update,
   alertSucess,
@@ -138,13 +139,13 @@ const renderNewCont = obj => {
   if (idBtn == 'update') {
     const upd = document.getElementById('update');
     upd.addEventListener('click', () => {
-      let verName = document.getElementById('fname').value;
-      let verLName = document.getElementById('lname').value;
-      let verPic = document.getElementById('urlpic').value;
-      let verCompany = document.getElementById('company').value;
-      let verAdr = document.getElementById('adress').value;
-      let verEmail = document.getElementById('email').value;
-      let verPhone = document.getElementById('phone').value;
+      const verName = document.getElementById('fname').value;
+      const verLName = document.getElementById('lname').value;
+      const verPic = document.getElementById('urlpic').value;
+      const verCompany = document.getElementById('company').value;
+      const verAdr = document.getElementById('adress').value;
+      const verEmail = document.getElementById('email').value;
+      const verPhone = document.getElementById('phone').value;
       if (
         verficator.verObrGeral(verName, 'fname') &&
         verficator.verObrGeral(verLName, 'urlpic') &&
@@ -163,13 +164,13 @@ const renderNewCont = obj => {
     //dar submit
     const sub = document.getElementById('submit');
     sub.addEventListener('click', () => {
-      let verName = document.getElementById('fname').value;
-      let verLName = document.getElementById('lname').value;
-      let verPic = document.getElementById('urlpic').value;
-      let verCompany = document.getElementById('company').value;
-      let verAdr = document.getElementById('adress').value;
-      let verEmail = document.getElementById('email').value;
-      let verPhone = document.getElementById('phone').value;
+      const verName = document.getElementById('fname').value;
+      const verLName = document.getElementById('lname').value;
+      const verPic = document.getElementById('urlpic').value;
+      const verCompany = document.getElementById('company').value;
+      const verAdr = document.getElementById('adress').value;
+      const verEmail = document.getElementById('email').value;
+      const verPhone = document.getElementById('phone').value;
       if (
         verficator.verObrGeral(verName, 'fname') &&
         verficator.verObrGeral(verLName, 'urlpic') &&

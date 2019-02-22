@@ -20,7 +20,7 @@ export const getAll = async () => {
 
 export const favAll = async () => {
   const { contacts } = window.state;
-  let array = [];
+  const array = [];
 
   if(contacts != ''){
     await Array.from(contacts).forEach(function(element) {
@@ -33,7 +33,7 @@ export const favAll = async () => {
 
 
 
-  let a = JSON.parse(localStorage.favList);
+  const a = JSON.parse(localStorage.favList);
 
   window.state = {
     ...window.state,

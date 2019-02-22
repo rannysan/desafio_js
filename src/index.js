@@ -9,7 +9,7 @@ import {
 } from './services/functions';
 
 let is_fav = '';
-let aLength = localStorage.length;
+const aLength = localStorage.length;
 let aKey;
 
 if (is_fav == '') {
@@ -31,7 +31,7 @@ if (JSON.parse(localStorage['favOn'])) {
 }
 
 //renderizar lista completa
-let home = document.getElementById('home');
+const home = document.getElementById('home');
 home.addEventListener('click', () => {
   is_fav = render(0);
   localStorage['favOn'] = JSON.stringify(is_fav);
@@ -45,7 +45,7 @@ fav.addEventListener('click', () => {
 });
 
 //pegar numero de pagina e trocar pagina
-let page_list = document.getElementById('page');
+const page_list = document.getElementById('page');
 page_list.addEventListener('click', function(e) {
   if (is_fav) {
     renderFav(e.target.id);
@@ -55,14 +55,13 @@ page_list.addEventListener('click', function(e) {
 });
 
 //Inserir novo contato
-let insert = document.getElementById('insert');
+const insert = document.getElementById('insert');
 insert.addEventListener('click', () => {
-  const root = document.getElementById('root');
   renderInsert();
 });
 
 //Close
-let close = document.getElementById('close');
+const close = document.getElementById('close');
 close.addEventListener('click', () => {
   const aa = document.getElementById('root');
   aa.style.display = 'none';

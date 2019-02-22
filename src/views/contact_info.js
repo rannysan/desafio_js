@@ -61,7 +61,7 @@ const renderContact_info = id => {
 
       const editBtn = document.getElementById('editBtn');
       editBtn.addEventListener('click', () =>{
-        let obj = {
+        const obj = {
           id: id,
           firstName: data.firstName,
           lastName: data.lastName,

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 //verificar obrigatórias
 export const verObrGeral = (string, id) => {
   const input = document.getElementById(id);
@@ -24,9 +25,8 @@ export const verNObr = (string, id) => {
 //verificar email
 export const verEmail = (email) =>{
   const inputEmail = document.getElementById('email');
-  let test;
-  let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  let verif = re.test(email);
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const verif = re.test(email);
 
 
   if(!verif || email == ''){
