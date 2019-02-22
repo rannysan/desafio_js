@@ -262,7 +262,7 @@ export const submit_insert = () => {
   let comment = document.getElementById('comment').value;
 
 
-  if (firstName == '' || lastName == '' || adress == '' || phone == '' || company == '') {
+  if (firstName == '' || lastName == '' || company == '') {
 
     alert('preencha os campos necessários');
 

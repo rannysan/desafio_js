@@ -24,8 +24,11 @@ export const verNObr = (string, id) => {
 //verificar email
 export const verEmail = (email) =>{
   const inputEmail = document.getElementById('email');
+  let test;
   let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   let verif = re.test(email);
+
+
   if(!verif || email == ''){
     inputEmail.style.backgroundColor = '#ff000080';
     return false;
