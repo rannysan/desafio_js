@@ -245,15 +245,27 @@ const insert = async(obj) => {
 //Submit
 export const submit_insert = () => {
   const form = document.getElementById('formComplete');
-  const urlPic = document.getElementById('urlpic').value;
+  let urlPic = document.getElementById('urlpic').value;
   const gender = document.getElementById('genForm').gender.value;
   const firstName = form.firstname.value;
   const email = form.mailInfo.value;
   const company = form.compInfo.value;
   const lastName = document.getElementById('lname').value;
-  const adress = document.getElementById('adress').value;
-  const phone = document.getElementById('phone').value;
-  const comment = document.getElementById('comment').value;
+  let adress = document.getElementById('adress').value;
+  let phone = document.getElementById('phone').value;
+  let comment = document.getElementById('comment').value;
+  if(adress == ''){
+    adress = null;
+  }
+  if(phone == ''){
+    phone = null;
+  }
+  if(comment){
+    comment = null;
+  }
+  if(urlPic == ''){
+    urlPic = null;
+  }
 
 
   if (firstName == '' || lastName == '' || company == '') {
@@ -407,9 +419,21 @@ export const submit_update = (id) => {
   const email = form.mailInfo.value;
   const company = form.compInfo.value;
   const lastName = document.getElementById('lname').value;
-  const adress = document.getElementById('adress').value;
-  const phone = document.getElementById('phone').value;
-  const comment = document.getElementById('comment').value;
+  let adress = document.getElementById('adress').value;
+  let phone = document.getElementById('phone').value;
+  let comment = document.getElementById('comment').value;
+  if(adress == ''){
+    adress = null;
+  }
+  if(phone == ''){
+    phone = null;
+  }
+  if(comment){
+    comment = null;
+  }
+  if(urlPic == ''){
+    urlPic = null;
+  }
 
 
 
