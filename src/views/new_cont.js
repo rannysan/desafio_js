@@ -102,6 +102,10 @@ const renderNewCont = obj => {
 
   //favoritar
   const favBtn = document.getElementById('favs');
+  if(isfav == false){
+    favBtn.style.backgroundColor = 'white';
+    isfav = true;
+  }
   favBtn.addEventListener('click', () =>{
     if(isfav == false){
       favBtn.style.backgroundColor = 'white';
