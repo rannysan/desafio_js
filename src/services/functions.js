@@ -140,32 +140,35 @@ export const renderFav = page => {
 
 //paginação
 export const pagination = (array, page) => {
-  const number_page = chunk(array, 10);
-  let html = '';
-  const pag = document.getElementById('page');
-  pag.innerHTML = html;
-  let i = page;
-  i++;
-  const limit = i + 2;
+  if(page != 'page'){
+    const number_page = chunk(array, 10);
+    let html = '';
+    const pag = document.getElementById('page');
+    pag.innerHTML = html;
+    let i = page;
+    i++;
+    const limit = i + 2;
 
-    if(i < 3){
-      i = 1;
-    }else{
-      i -= 2;
-    }
-
-    pag.innerHTML += `<a href="#" class="pages" id="0">Inicio</a>`;
-    for (i ; i <= limit; i++) {
-      if(i != number_page.length){
-        html = `<a href="#" class="pages" id="${i - 1}">${i}</a>`;
-        pag.innerHTML += html;
+      if(i < 3){
+        i = 1;
       }else{
-        break;
+        i -= 2;
       }
-    }
-    pag.innerHTML += `<a href="#" class="pages" id="${number_page.length - 1}">Fim</a>`;
 
-    document.getElementById(page).style.backgroundColor = '#694b91';
+      pag.innerHTML += `<a href="#" class="pages" id="0">Inicio</a>`;
+      for (i ; i <= limit; i++) {
+        if(i != number_page.length){
+          html = `<a href="#" class="pages" id="${i - 1}">${i}</a>`;
+          pag.innerHTML += html;
+        }else{
+          break;
+        }
+      }
+
+        pag.innerHTML += `<a href="#" class="pages" id="${number_page.length - 1}">Fim</a>`;
+        document.getElementById(page).style.backgroundColor = '#694b91';
+    }
+
 
   return 0;
 };
