@@ -423,7 +423,7 @@ export const submit_update = (id, isfav) => {
   const email = form.mailInfo.value;
   const company = form.compInfo.value;
   const lastName = document.getElementById('lname').value;
-  let favorite = isfav;
+  const favorite = isfav;
   let adress = document.getElementById('adress').value;
   let phone = document.getElementById('phone').value;
   let comment = document.getElementById('comment').value;

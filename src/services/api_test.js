@@ -3,13 +3,11 @@ window.state = {
   filter: '',
   contacts: [],
   favorites: [],
-  pageNumber: ''
+  pageNumber: '',
 };
 
 export const getAll = async () => {
-  const res = await fetch(
-    'http://contacts-api.azurewebsites.net/api/contacts'
-  );
+  const res = await fetch('http://contacts-api.azurewebsites.net/api/contacts');
   const data = await res.json();
   window.state = {
     ...window.state,
@@ -22,22 +20,26 @@ export const favAll = async () => {
   const { contacts } = window.state;
   const array = [];
 
-  if(contacts != ''){
+  if (contacts != '') {
     await Array.from(contacts).forEach(function(element) {
       if (element.isFavorite) {
         array.push(element);
       }
     });
-    localStorage.setItem("favList", JSON.stringify(array));
+  } else {
+    const res = await fetch(
+      'http://contacts-api.azurewebsites.net/api/contacts'
+    );
+    const data = await res.json();
+    await Array.from(data).forEach(function(element) {
+      if (element.isFavorite) {
+        array.push(element);
+      }
+    });
   }
-
-
-
-  const a = JSON.parse(localStorage.favList);
 
   window.state = {
     ...window.state,
-    favorites: a,
+    favorites: array,
   };
 };
-

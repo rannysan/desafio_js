@@ -17,6 +17,7 @@ if (is_fav == '') {
   for (let i = 0; i <= aLength; i++) {
     aKey = localStorage.key(i);
     if (aKey == 'favOn') {
+      is_fav = true;
       break;
     } else if (i == aLength) {
       localStorage['favOn'] = JSON.stringify(is_fav);
