@@ -12,6 +12,7 @@ const renderNewCont = obj => {
   let idBtn;
   let mCheck = '';
   let fCheck = '';
+  let isfav = obj.isFavorite;
   if (obj.avatar == '') {
     avatar = require('../images/ContatoEx.png');
     idBtn = 'submit';
@@ -33,6 +34,7 @@ const renderNewCont = obj => {
             <br>Adicione URL</label><br>
             <input type="text" id="urlpic" placeholder="url da foto" value="${avatar}"><br>
             <button class="btn"  id="pic_car" type="button">Carregar</button>
+            <button class="btn"  id="favs" type="button">Favoritar</button>
         </div>
 
         <div clasS="gen_info">
@@ -98,6 +100,18 @@ const renderNewCont = obj => {
   document.getElementById('root').style.display = 'block';
   div.focus();
 
+  //favoritar
+  const favBtn = document.getElementById('favs');
+  favBtn.addEventListener('click', () =>{
+    if(isfav == false){
+      favBtn.style.backgroundColor = 'white';
+      isfav = true;
+    }else{
+      favBtn.style.backgroundColor = 'rgba(137, 43, 226, 0.8)';
+      isfav = false;
+    }
+  })
+
   //botão cancelar
   const cancel = document.getElementById('cancel');
   cancel.addEventListener('click', () => {
@@ -155,7 +169,7 @@ const renderNewCont = obj => {
         verficator.verNObr(verAdr, 'adress') &&
         verficator.verEmail(verEmail)
       ) {
-        submit_update(obj.id);
+        submit_update(obj.id, isfav);
       } else {
         alertSucess('Por favor, preencha os dados coretamente!');
       }
@@ -180,7 +194,7 @@ const renderNewCont = obj => {
         verficator.verNObr(verAdr, 'adress') &&
         verficator.verEmail(verEmail)
       ) {
-        submit_insert();
+        submit_insert(isfav);
       } else {
         alertSucess('Por favor, preencha os dados coretamente!');
       }

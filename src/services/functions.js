@@ -246,13 +246,14 @@ const insert = async(obj) => {
 };
 
 //Submit
-export const submit_insert = () => {
+export const submit_insert = (isfav) => {
   const form = document.getElementById('formComplete');
   let urlPic = document.getElementById('urlpic').value;
   const gender = document.getElementById('genForm').gender.value;
   const firstName = form.firstname.value;
   const email = form.mailInfo.value;
   const company = form.compInfo.value;
+  const favorite = isfav;
   const lastName = document.getElementById('lname').value;
   let adress = document.getElementById('adress').value;
   let phone = document.getElementById('phone').value;
@@ -281,7 +282,7 @@ export const submit_insert = () => {
       lastName: lastName,
       email: email,
       gender: gender,
-      isFavorite: false,
+      isFavorite: favorite,
       company: company,
       avatar: urlPic,
       address: adress,
@@ -408,7 +409,7 @@ export const update = async(obj, id) => {
   }
 };
 
-export const submit_update = (id) => {
+export const submit_update = (id, isfav) => {
 
   const form = document.getElementById('formComplete');
   let urlPic;
@@ -422,6 +423,7 @@ export const submit_update = (id) => {
   const email = form.mailInfo.value;
   const company = form.compInfo.value;
   const lastName = document.getElementById('lname').value;
+  let favorite = isfav;
   let adress = document.getElementById('adress').value;
   let phone = document.getElementById('phone').value;
   let comment = document.getElementById('comment').value;
@@ -450,7 +452,7 @@ export const submit_update = (id) => {
       lastName: lastName,
       email: email,
       gender: gender,
-      isFavorite: false,
+      isFavorite: favorite,
       company: company,
       avatar: urlPic,
       address: adress,
